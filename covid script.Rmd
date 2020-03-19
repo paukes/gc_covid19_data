@@ -15,7 +15,7 @@ library(rcartocolor)
 library(scales)
 library(lubridate)
 
-canada_data <- read.csv("C:/Users/Pieter/Desktop/covid data/canada_covid_shortform.csv")
+canada_data <- read.csv("canada_covid_shortform.csv")
 canada_data$date <- ymd_hm(canada_data$date)
 
 #add 'Total' column
