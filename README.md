@@ -25,10 +25,10 @@ Where Can I Find the Compiled Data?
 ===================================
 
 You will find two files:  
-*canada\_covid.xlsx - Compilation of the data from the website in both
-long and short form.  
-*canada\_covid\_shortform.csv - A .csv file of the above that I like to
-use to make graphs.
+\* canada\_covid.xlsx - Compilation of the data from the website in both
+long and short form  
+\* canada\_covid\_shortform.csv - A .csv file of the above that I like
+to use to make graphs
 
 Graphs
 ======

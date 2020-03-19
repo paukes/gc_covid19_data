@@ -17,8 +17,8 @@ All data has been collected somewhat-daily since March from the Public Health Ag
 # Where Can I Find the Compiled Data?
 
 You will find two files:  
-*canada_covid.xlsx - Compilation of the data from the website in both long and short form.   
-*canada_covid_shortform.csv - A .csv file of the above that I like to use to make graphs.  
+* canada_covid.xlsx - Compilation of the data from the website in both long and short form  
+* canada_covid_shortform.csv - A .csv file of the above that I like to use to make graphs  
 
 # Graphs
 
@@ -26,7 +26,7 @@ Code to create these graphs can be found in the file 'covid script.Rmd'.
 
 Note: I chose to only focus on 'confirmed cases' that the PHAC website gives.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=2}
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=8}
 library(tidyverse)
 library(patchwork)
 library(rcartocolor)
