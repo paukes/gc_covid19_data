@@ -14,16 +14,19 @@ I've compiled data from the Government of Canada website to help see the change 
 
 All data has been collected somewhat-daily since March from the Public Health Agency of Canada, Government of Canada. I've included a link to their website in this repo. As their website states, provincial and territorial reported numbers will likely be more up-to-date than what is found on the PHAC website. Regardless, this gives a consistent idea of how things are changing with time.  
 
-# Excel Data
+# Where Can I Find the Compiled Data?
 
 You will find two files:  
-* canada_covid.xlsx - Compilation of the data from the website in both long and short form.   
-* canada_covid_shortform.csv - A .csv file of the above that I like to use to make graphs.  
+*canada_covid.xlsx - Compilation of the data from the website in both long and short form.   
+*canada_covid_shortform.csv - A .csv file of the above that I like to use to make graphs.  
 
 # Graphs
 
-### Packages needed
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+Code to create these graphs can be found in the file 'covid script.Rmd'.  
+
+Note: I chose to only focus on 'confirmed cases' that the PHAC website gives.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.asp=0.618}
 library(tidyverse)
 library(patchwork)
 library(rcartocolor)
@@ -98,6 +101,6 @@ ggplot(covid_pop %>%
         plot.caption.position = 'plot',
         legend.position = 'none')
 
-#Combine 2 graphs
+#Final plot that combines the 2 graphs
 tot_case/tot_case_prop
 ```
