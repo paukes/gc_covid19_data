@@ -19,3 +19,85 @@ All data has been collected somewhat-daily since March from the Public Health Ag
 You will find two files:  
 * canada_covid.xlsx - Compilation of the data from the website in both long and short form.   
 * canada_covid_shortform.csv - A .csv file of the above that I like to use to make graphs.  
+
+# Graphs
+
+### Packages needed
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)
+library(patchwork)
+library(rcartocolor)
+library(scales)
+library(lubridate)
+
+canada_data <- read.csv("canada_covid_shortform.csv")
+canada_data$date <- ymd_hm(canada_data$date)
+
+#add 'Total' column
+canada_data <- 
+  canada_data %>%
+  pivot_wider(names_from = province,
+              values_from = cases,
+              values_fill = list(cases=0)) %>%
+  mutate(total = BC+AB+SK+MN+ON+QC+NL+NB+NS+PEI+Repat) %>%
+  pivot_longer(cols = BC:total,
+               names_to = 'province',
+               values_to = 'cases')
+
+#Removing repatriated Canadians
+canada_data <- canada_data %>%
+  filter(province != 'Repat')
+
+
+#TOTAL CONFIRMED CASES:
+tot_case <- 
+  ggplot(canada_data %>%
+         filter(case_type == 'conf') %>%
+         filter(cases > 0),
+       aes(date, cases)) +
+  geom_line(aes(colour=province), size=1.5, alpha=0.5)+
+  geom_point(aes(colour=province, fill = after_scale(alpha(colour, 0.7))), pch=21, size=3)+
+  scale_y_log10()+
+  scale_colour_carto_d(palette = 'Vivid')+
+  labs(title='Total Confirmed Cases For Different Provinces',
+       subtitle='Data current as of 11:30 March 19, 2020',
+       y='Confirmed Cases', 
+       colour='Province')+
+  theme_classic()+
+  theme(axis.title.x = element_blank(),
+        plot.title.position = 'plot')
+
+#TOTAL CASES PER POPULATION
+#Create population dataset
+province <- factor(c('NL','PEI','NS','NB','QC','ON','MN','SK','AB','BC','YK','NT','NU'))
+prov_pop <- as.numeric(c(521922,157901,976768,780021,8522800,14659616,1373859,1178657,4395586,5105576,41022,44895,38873))
+
+canada_pop <- data.frame(province, prov_pop)
+
+#merge
+covid_pop <- merge(canada_data, canada_pop, by = 'province', all = TRUE)
+
+#plot
+tot_case_prop <-
+ggplot(covid_pop %>%
+         filter(case_type == 'conf') %>%
+         filter(cases > 0 ) %>%
+         mutate(case_prop = (cases/prov_pop)*100),
+       aes(date, case_prop)) +
+  geom_point(aes(colour=province, fill = after_scale(alpha(colour, 0.7))), pch=21, size=3)+
+  geom_line(aes(colour=province), size=2, alpha=0.5)+
+  scale_y_log10()+
+  scale_colour_carto_d(palette = 'Vivid')+
+  labs(title='Cases as a Percentage of Provincial Population',
+       y='Percent of Population (%)',
+       colour='Province',
+       caption='Data from Public Health Agency of Canada, Government of Canada' )+
+  theme_classic()+
+  theme(axis.title.x = element_blank(),
+        plot.title.position = 'plot',
+        plot.caption.position = 'plot',
+        legend.position = 'none')
+
+#Combine 2 graphs
+tot_case/tot_case_prop
+```

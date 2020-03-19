@@ -29,3 +29,10 @@ You will find two files:
 long and short form.  
 \* canada\_covid\_shortform.csv - A .csv file of the above that I like
 to use to make graphs.
+
+Graphs
+======
+
+### Packages needed
+
+![](README_files/figure-markdown_strict/unnamed-chunk-1-1.png)
