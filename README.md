@@ -14,8 +14,8 @@ their own graphs, will have an accessible resource to do so.
 Source of Data
 ==============
 
-All data has been collected somewhat-daily since March from the \[Public
-Health Agency of Canada, Government of Canada\]
+All data has been collected somewhat-daily since March from the Public
+Health Agency of Canada, Government of Canada
 (<a href="https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html" class="uri">https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html</a>).
 I’ve included a shortcut to their website in this repo. As their website
 states, provincial and territorial reported numbers will likely be more
@@ -27,8 +27,9 @@ Where Can I Find the Compiled Data?
 
 You will find two files:  
 \* canada\_covid.xlsx - Compilation of the data from the website in both
-long and short form \* canada\_covid\_shortform.csv - A .csv file of the
-above that I like to use to make graphs
+long and short form  
+\* canada\_covid\_shortform.csv - A .csv file of the above that I like
+to use to make graphs
 
 Graphs
 ======
