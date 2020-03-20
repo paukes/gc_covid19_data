@@ -42,7 +42,7 @@ canada_data <-
   pivot_wider(names_from = province,
               values_from = cases,
               values_fill = list(cases=0)) %>%
-  mutate(total = BC+AB+SK+MN+ON+QC+NL+NB+NS+PEI+Repat) %>%
+  mutate(total = BC+AB+SK+MB+ON+QC+NL+NB+NS+PEI+Repat) %>%
   pivot_longer(cols = BC:total,
                names_to = 'province',
                values_to = 'cases')
@@ -50,9 +50,11 @@ canada_data <-
 #Removing repatriated Canadians
 canada_data <- canada_data %>%
   filter(province != 'Repat')
+```
 
-
-#TOTAL CONFIRMED CASES:
+# Total Cases
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+#create dataset
 tot_case <- 
   ggplot(canada_data %>%
          filter(case_type == 'conf') %>%
@@ -70,9 +72,13 @@ tot_case <-
   theme(axis.title.x = element_blank(),
         plot.title.position = 'plot')
 
-#TOTAL CASES PER POPULATION
+```
+
+# Total Cases and Population
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 #Create population dataset
-province <- factor(c('NL','PEI','NS','NB','QC','ON','MN','SK','AB','BC','YK','NT','NU'))
+province <- factor(c('NL','PEI','NS','NB','QC','ON','MB','SK','AB','BC','YK','NT','NU'))
 prov_pop <- as.numeric(c(521922,157901,976768,780021,8522800,14659616,1373859,1178657,4395586,5105576,41022,44895,38873))
 
 canada_pop <- data.frame(province, prov_pop)
@@ -101,6 +107,6 @@ ggplot(covid_pop %>%
         plot.caption.position = 'plot',
         legend.position = 'none')
 
-#Final plot that combines the 2 graphs
+#Combine 2 graphs (700x600):
 tot_case/tot_case_prop
 ```

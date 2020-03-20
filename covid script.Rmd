@@ -24,7 +24,7 @@ canada_data <-
   pivot_wider(names_from = province,
               values_from = cases,
               values_fill = list(cases=0)) %>%
-  mutate(total = BC+AB+SK+MN+ON+QC+NL+NB+NS+PEI+Repat) %>%
+  mutate(total = BC+AB+SK+MB+ON+QC+NL+NB+NS+PEI+Repat) %>%
   pivot_longer(cols = BC:total,
                names_to = 'province',
                values_to = 'cases')
@@ -60,7 +60,7 @@ tot_case <-
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 #Create population dataset
-province <- factor(c('NL','PEI','NS','NB','QC','ON','MN','SK','AB','BC','YK','NT','NU'))
+province <- factor(c('NL','PEI','NS','NB','QC','ON','MB','SK','AB','BC','YK','NT','NU'))
 prov_pop <- as.numeric(c(521922,157901,976768,780021,8522800,14659616,1373859,1178657,4395586,5105576,41022,44895,38873))
 
 canada_pop <- data.frame(province, prov_pop)
