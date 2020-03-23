@@ -24,7 +24,7 @@ canada_data <-
   pivot_wider(names_from = province,
               values_from = cases,
               values_fill = list(cases=0)) %>%
-  mutate(total = BC+AB+SK+MB+ON+QC+NL+NB+NS+PEI+Repat) %>%
+  mutate(total = BC+AB+SK+MB+ON+QC+NL+NB+NS+PEI+Repat+YK+NT) %>%
   pivot_longer(cols = BC:total,
                names_to = 'province',
                values_to = 'cases')
@@ -47,7 +47,7 @@ tot_case <-
   scale_y_log10()+
   scale_colour_carto_d(palette = 'Vivid')+
   labs(title='Total Confirmed Cases For Different Provinces',
-       subtitle='Data current as of 9:00 March 21, 2020',
+       subtitle='Data current as of 11:00 March 23, 2020',
        y='Confirmed Cases', 
        colour='Province')+
   theme_classic()+

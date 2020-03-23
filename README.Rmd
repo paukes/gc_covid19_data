@@ -6,6 +6,10 @@ output: md_document
 ---
 # Canadian Cases of COVID-19
 
+**Update:** A colleague just forwarded me an excellent group that is already doing this, and have developed some great RShiny apps to visualize the data. You can find it here: https://art-bd.shinyapps.io/covid19canada/ . I would highly recommend this site as it contains more detailed and up-to-date information. I'll still continue to add data whenever I have a chance, but do check out that website as they supply open-sourced data as well.
+
+*Previous Post:*
+
 I was trying to find a figure illustrating the changes in COVID-19 cases with time for Canada and its provinces. I stumbled across a few but not any with accessible databases. 
 
 I've compiled data from the Government of Canada website to help see the change in confirmed cases with time. I'll try to keep the database updated at least once a day (but no promises!). My hope is that anyone who is wanting to see how things have changed with time, or try to plot their own graphs, will have an accessible resource to do so.  
@@ -18,7 +22,7 @@ All data has been collected somewhat-daily since March from the Public Health Ag
 
 You will find two files:  
 * canada_covid.xlsx - Compilation of the data from the website in both long and short form  
-* canada_covid_shortform.csv - A .csv file of the above that I like to use to make graphs
+* canada_covid_shortform.csv - A '.csv' file of the above that I like to use to make graphs
 
 # Graphs
 
@@ -42,7 +46,7 @@ canada_data <-
   pivot_wider(names_from = province,
               values_from = cases,
               values_fill = list(cases=0)) %>%
-  mutate(total = BC+AB+SK+MB+ON+QC+NL+NB+NS+PEI+Repat) %>%
+  mutate(total = BC+AB+SK+MB+ON+QC+NL+NB+NS+PEI+Repat+YK+NT) %>%
   pivot_longer(cols = BC:total,
                names_to = 'province',
                values_to = 'cases')
@@ -65,7 +69,7 @@ tot_case <-
   scale_y_log10()+
   scale_colour_carto_d(palette = 'Vivid')+
   labs(title='Total Confirmed Cases For Different Provinces',
-       subtitle='Data current as of 9:00 March 21, 2020',
+       subtitle='Data current as of 11:00 March 23, 2020',
        y='Confirmed Cases', 
        colour='Province')+
   theme_classic()+
