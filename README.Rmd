@@ -56,7 +56,6 @@ canada_data <- canada_data %>%
   filter(province != 'Repat')
 ```
 
-# Total Cases
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 #create dataset
 tot_case <- 
@@ -78,7 +77,6 @@ tot_case <-
 
 ```
 
-# Total Cases and Population
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 #Create population dataset
