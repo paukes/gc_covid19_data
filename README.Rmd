@@ -30,7 +30,7 @@ Code to create these graphs can be found in the file 'covid script.Rmd'.
 
 Note: I chose to only focus on 'confirmed cases' that the PHAC website gives. My hope is that this database helps others plot or visualize whatever they see fit.  
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=8}
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=12}
 library(tidyverse)
 library(patchwork)
 library(rcartocolor)
