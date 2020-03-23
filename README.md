@@ -1,6 +1,17 @@
 Canadian Cases of COVID-19
 ==========================
 
+**Update:** A colleague just forwarded me an excellent group that is
+already doing this, and have developed some great RShiny apps to
+visualize the data. You can find it here:
+<a href="https://art-bd.shinyapps.io/covid19canada/" class="uri">https://art-bd.shinyapps.io/covid19canada/</a>
+. I would highly recommend this site as it contains more detailed and
+up-to-date information. I’ll still continue to add data whenever I have
+a chance, but do check out that website as they supply open-sourced data
+as well.
+
+*Previous Post:*
+
 I was trying to find a figure illustrating the changes in COVID-19 cases
 with time for Canada and its provinces. I stumbled across a few but not
 any with accessible databases.
@@ -28,7 +39,7 @@ Where Can I Find the Compiled Data?
 You will find two files:  
 \* canada\_covid.xlsx - Compilation of the data from the website in both
 long and short form  
-\* canada\_covid\_shortform.csv - A .csv file of the above that I like
+\* canada\_covid\_shortform.csv - A ‘.csv’ file of the above that I like
 to use to make graphs
 
 Graphs
