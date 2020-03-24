@@ -51,4 +51,4 @@ Note: I chose to only focus on ‘confirmed cases’ that the PHAC website
 gives. My hope is that this database helps others plot or visualize
 whatever they see fit.
 
-![](README_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+<img src="README_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="100%" />
