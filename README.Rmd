@@ -54,10 +54,9 @@ canada_data <-
 #Removing repatriated Canadians
 canada_data <- canada_data %>%
   filter(province != 'Repat')
-```
 
-# Total Cases
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+
+#Total Cases
 #create dataset
 tot_case <- 
   ggplot(canada_data %>%
@@ -76,12 +75,10 @@ tot_case <-
   theme(axis.title.x = element_blank(),
         plot.title.position = 'plot')
 
-```
 
-# Total Cases and Population
-
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+#Total Cases and Population
 #Create population dataset
+
 province <- factor(c('NL','PEI','NS','NB','QC','ON','MB','SK','AB','BC','YK','NT','NU'))
 prov_pop <- as.numeric(c(521922,157901,976768,780021,8522800,14659616,1373859,1178657,4395586,5105576,41022,44895,38873))
 
