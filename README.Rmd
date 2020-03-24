@@ -56,6 +56,7 @@ canada_data <- canada_data %>%
   filter(province != 'Repat')
 ```
 
+# Total Cases
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 #create dataset
 tot_case <- 
@@ -63,12 +64,12 @@ tot_case <-
          filter(case_type == 'conf') %>%
          filter(cases > 0),
        aes(date, cases)) +
-  geom_line(aes(colour=province), size=1.5, alpha=0.5)+
-  geom_point(aes(colour=province, fill = after_scale(alpha(colour, 0.7))), pch=21, size=3)+
+  geom_line(aes(colour=province), size=1, alpha=0.5)+
+  geom_point(aes(colour=province, fill = after_scale(alpha(colour, 0.7))), pch=21, size=2)+
   scale_y_log10()+
   scale_colour_carto_d(palette = 'Vivid')+
   labs(title='Total Confirmed Cases For Different Provinces',
-       subtitle='Data current as of 11:00 March 23, 2020',
+       subtitle='Data current as of 18:00 March 23, 2020',
        y='Confirmed Cases', 
        colour='Province')+
   theme_classic()+
@@ -77,6 +78,7 @@ tot_case <-
 
 ```
 
+# Total Cases and Population
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 #Create population dataset
@@ -95,8 +97,8 @@ ggplot(covid_pop %>%
          filter(cases > 0 ) %>%
          mutate(case_prop = (cases/prov_pop)*100),
        aes(date, case_prop)) +
-  geom_point(aes(colour=province, fill = after_scale(alpha(colour, 0.7))), pch=21, size=3)+
-  geom_line(aes(colour=province), size=2, alpha=0.5)+
+  geom_point(aes(colour=province, fill = after_scale(alpha(colour, 0.7))), pch=21, size=2)+
+  geom_line(aes(colour=province), size=1, alpha=0.5)+
   scale_y_log10()+
   scale_colour_carto_d(palette = 'Vivid')+
   labs(title='Cases as a Percentage of Provincial Population',
