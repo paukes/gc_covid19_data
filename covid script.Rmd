@@ -47,7 +47,7 @@ tot_case <-
   scale_y_log10()+
   scale_colour_carto_d(palette = 'Vivid')+
   labs(title='Total Confirmed Cases For Different Provinces',
-       subtitle='Data current as of 18:00 March 23, 2020',
+       subtitle='Data current as of 18:00 March 24, 2020',
        y='Confirmed Cases', 
        colour='Province')+
   theme_classic()+
