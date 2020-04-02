@@ -1,14 +1,16 @@
 Canadian Cases of COVID-19
 ==========================
 
-**Update:** A colleague just forwarded me an excellent group that is
-already doing this, and have developed some great RShiny apps to
-visualize the data. You can find it here:
-<a href="https://art-bd.shinyapps.io/covid19canada/" class="uri">https://art-bd.shinyapps.io/covid19canada/</a>
-. I would highly recommend this site as it contains more detailed and
-up-to-date information. I’ll still continue to add data whenever I have
-a chance, but do check out that website as they supply open-sourced data
-as well.
+**Update:** The Public Health Agency of Canada now has updated their
+site to include accessible data
+(<a href="https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html" class="uri">https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html</a>),
+as well as some additional graphs. Further, there is an excellent group
+that has developed a great open and informative interface, which can be
+accessed here:
+<a href="https://art-bd.shinyapps.io/covid19canada/" class="uri">https://art-bd.shinyapps.io/covid19canada/</a>.
+
+As these resources are easily accesible, I won’t be updating this Repo
+and suggest heading to those websites instead. Stay safe!
 
 *Previous Post:*
 
@@ -50,5 +52,3 @@ Code to create these graphs can be found in the file ‘covid script.Rmd’.
 Note: I chose to only focus on ‘confirmed cases’ that the PHAC website
 gives. My hope is that this database helps others plot or visualize
 whatever they see fit.
-
-![](README_files/figure-markdown_strict/unnamed-chunk-1-1.png)

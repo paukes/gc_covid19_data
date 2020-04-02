@@ -6,7 +6,9 @@ output: md_document
 ---
 # Canadian Cases of COVID-19
 
-**Update:** A colleague just forwarded me an excellent group that is already doing this, and have developed some great RShiny apps to visualize the data. You can find it here: https://art-bd.shinyapps.io/covid19canada/ . I would highly recommend this site as it contains more detailed and up-to-date information. I'll still continue to add data whenever I have a chance, but do check out that website as they supply open-sourced data as well.
+**Update:** The Public Health Agency of Canada now has updated their site to include accessible data (https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html), as well as some additional graphs. Further, there is an excellent group that has developed a great open and informative interface, which can be accessed here: https://art-bd.shinyapps.io/covid19canada/.
+
+As these resources are easily accesible, I won't be updating this Repo and suggest heading to those websites instead. Stay safe! 
 
 *Previous Post:*
 
@@ -28,84 +30,4 @@ You will find two files:
 
 Code to create these graphs can be found in the file 'covid script.Rmd'.  
 
-Note: I chose to only focus on 'confirmed cases' that the PHAC website gives. My hope is that this database helps others plot or visualize whatever they see fit.  
-
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=10}
-library(tidyverse)
-library(patchwork)
-library(rcartocolor)
-library(scales)
-library(lubridate)
-
-canada_data <- read.csv("canada_covid_shortform.csv")
-canada_data$date <- ymd_hm(canada_data$date)
-
-#add 'Total' column
-canada_data <- 
-  canada_data %>%
-  pivot_wider(names_from = province,
-              values_from = cases,
-              values_fill = list(cases=0)) %>%
-  mutate(total = BC+AB+SK+MB+ON+QC+NL+NB+NS+PEI+Repat+YK+NT) %>%
-  pivot_longer(cols = BC:total,
-               names_to = 'province',
-               values_to = 'cases')
-
-#Removing repatriated Canadians
-canada_data <- canada_data %>%
-  filter(province != 'Repat')
-
-# Total Cases
-# create dataset
-tot_case <- 
-  ggplot(canada_data %>%
-         filter(case_type == 'conf') %>%
-         filter(cases > 0),
-       aes(date, cases)) +
-  geom_line(aes(colour=province), size=1, alpha=0.5)+
-  geom_point(aes(colour=province, fill = after_scale(alpha(colour, 0.7))), pch=21, size=2)+
-  scale_y_log10()+
-  scale_colour_carto_d(palette = 'Vivid')+
-  labs(title='Total Confirmed Cases For Different Provinces',
-       subtitle='Data current as of 11:00 March 26, 2020',
-       y='Confirmed Cases', 
-       colour='Province')+
-  theme_classic()+
-  theme(axis.title.x = element_blank(),
-        plot.title.position = 'plot')
-
-
-# Total Cases and Population
-#Create population dataset
-province <- factor(c('NL','PEI','NS','NB','QC','ON','MB','SK','AB','BC','YK','NT','NU'))
-prov_pop <- as.numeric(c(521922,157901,976768,780021,8522800,14659616,1373859,1178657,4395586,5105576,41022,44895,38873))
-
-canada_pop <- data.frame(province, prov_pop)
-
-#merge
-covid_pop <- merge(canada_data, canada_pop, by = 'province', all = TRUE)
-
-#plot
-tot_case_prop <-
-ggplot(covid_pop %>%
-         filter(case_type == 'conf') %>%
-         filter(cases > 0 ) %>%
-         mutate(case_prop = (cases/prov_pop)*100),
-       aes(date, case_prop)) +
-  geom_point(aes(colour=province, fill = after_scale(alpha(colour, 0.7))), pch=21, size=2)+
-  geom_line(aes(colour=province), size=1, alpha=0.5)+
-  scale_y_log10()+
-  scale_colour_carto_d(palette = 'Vivid')+
-  labs(title='Cases as a Percentage of Provincial Population',
-       y='Percent of Population (%)',
-       colour='Province',
-       caption='Data from Public Health Agency of Canada, Government of Canada' )+
-  theme_classic()+
-  theme(axis.title.x = element_blank(),
-        plot.title.position = 'plot',
-        plot.caption.position = 'plot',
-        legend.position = 'none')
-
-#Combine 2 graphs (700x600):
-tot_case/tot_case_prop
-```
+Note: I chose to only focus on 'confirmed cases' that the PHAC website gives. My hope is that this database helps others plot or visualize whatever they see fit.
